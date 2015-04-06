@@ -30,7 +30,7 @@
     <!-- load cytoscape layout style-->
     <script src="js/layout.js"></script>
     <!-- load cytoscape functions-->
-    <script src="js/func_cyto.js"></script>
+    <script src="js/functions_cyto.js"></script>
     <!-- optional: cytoscpae download functions-->
     <!--<script src="js/library/FileSaver.min.js"></script>-->
     <!--<script src="js/library/canvas-to-blob.min.js"></script>-->
@@ -42,5 +42,6 @@
 </head>
 <body>
 <div id="cy"></div>
+<div id="property"></div>
 </body>
 </html>

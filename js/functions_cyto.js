@@ -21,7 +21,7 @@ $(function(){
 
     // set mouse interactions
     mouse_hover();
-    //right_click();
+    //left_click();
 })
 
 function mouse_hover() {
@@ -29,9 +29,9 @@ function mouse_hover() {
     var cy = $("#cy").cytoscape("get");
     cy.$('node').on('mouseover', function (e) {
         var firstNeighbor = e.cyTarget.closedNeighborhood();
-        var secondNeighbor = firstNeighbor.closedNeighborhood();
+        //var secondNeighbor = firstNeighbor.closedNeighborhood();
         cy.$().css('opacity', '0.2');
-        secondNeighbor.css('opacity', '1');
+        firstNeighbor.css('opacity', '1');
     });
     cy.$('node').on('mouseout', function (e) {
         cy.$('node').css('opacity', '1');
@@ -39,8 +39,8 @@ function mouse_hover() {
     });
 }
 
-function right_click() {
-    //right click to show property table
+function left_click() {
+    //left click to show property table
     var cy = $("#cy").cytoscape("get");
     cy.on('tap', function (e) {
         if (e.cyTarget === cy)
@@ -59,28 +59,32 @@ function right_click() {
 function property_table_node(ele) {
     $('#property').empty();
     $('#property').show();
-    $('#property').append('<table id="propertyTable">');
+    $('#property').append('<table id="propertyTable"></table>');
     var data = ele.data();
+    $('#propertyTable').append('<tr><td colspan="2" class="property-header">' + data.id + '</td></tr>');
     for (var i in data)
-        $('#property').append('<tr><td class="property-table-td1">' + i + '</td><td class="property-table-td2">' + data[i], '</td></tr>');
-    $('#property').append('</table>');
+        $('#propertyTable').append('<tr><td class="property-table-td1">' + i + '</td><td class="property-table-td2">' + data[i], '</td></tr>');
+    // or
+    //var outList = ["Label"];
+    //for (var i in outList)
+    //    $('#propertyTable').append('<tr><td class="property-table-td1">' + outList[i] + '</td><td class="property-table-td2">' + data[outList[i]] + '</td></tr>');
     set_div_pos(ele.renderedPosition().x, ele.renderedPosition().y, "#property", 150, true);
-    $("#property tr:even").css({"background-color": "#f4f4f4", "color": "#000"});
+    $("#propertyTable tr:even").css({"background-color": "#f4f4f4", "color": "#000"});
 }
 
 function property_table_edge(ele) {
     $('#property').empty();
     $('#property').show();
-    $('#property').append('<table id="propertyTable">');
+    $('#property').append('<table id="propertyTable"></table>');
     var data = ele.data();
+    $('#propertyTable').append('<tr><td colspan="2" class="property-header"> Edge: </td></tr>');
     for (var i in data)
-        $('#property').append('<tr><td class="property-table-td1">' + i + '</td><td class="property-table-td2">' + data[i], '</td></tr>');
-    $('#property').append('</table>');
+        $('#propertyTable').append('<tr><td class="property-table-td1">' + i + '</td><td class="property-table-td2">' + data[i], '</td></tr>');
     var eles = ele.connectedNodes();
     var x = eles[0].renderedPosition().x + eles[1].renderedPosition().x;
     var y = eles[0].renderedPosition().y + eles[1].renderedPosition().y;
     set_div_pos(x / 2, y / 2, "#property", 150, true);
-    $("#property tr:odd").css({"background-color": "#f4f4f4", "color": "#000"});
+    $("#propertyTable tr:odd").css({"background-color": "#f4f4f4", "color": "#000"});
 }
 
 function set_div_pos(x, y, divid, w, shift) {
