@@ -1,7 +1,7 @@
 var styleObj = cytoscape.stylesheet()
     .selector('node')
     .css({
-            'content':'data(Label)',
+            'content':'data(id)',
             'font-family': 'Tahoma, Geneva, sans-serif',
             'font-size': '9',
             'font-weight':'bold',
