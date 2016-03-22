@@ -6,16 +6,17 @@
     <title>Cytoscape</title>
     <!--  load jquery library-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    
+    <!-- bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <!-- load cytoscape library-->
     <!--customized cytoscape library supports download and line breaks-->
-<!--    <script src="js/library/cytoscape_customized.js"></script>-->
+    <!--    <script src="js/library/cytoscape_customized.js"></script>-->
     <!--the released version has newest functions.
     However, you can download the newest release and modified the js file according to the file "cytoscape.js modified point" -->
     <script src="js/library/cytoscape.min.js"></script>
-
-    <!-- to use the Arbor (force directed) layout-->
-    <script src="js/library/arbor.js"></script>
 
     <!-- load cytoscape-panzoom extension  -->
     <link rel="stylesheet" type="text/css" href="js/library/jquery.cytoscape-panzoom.css"/>
@@ -29,6 +30,10 @@
     <script src="js/style.js"></script>
     <!-- load cytoscape layout style-->
     <script src="js/layout.js"></script>
+    <!-- load cytoscape layout style-->
+    <script src="js/layout.js"></script>
+    <script src="js/library/arbor.js"></script>
+    <script src="js/library/springy.js"></script>
     <!-- load cytoscape functions-->
     <script src="js/functions_cyto.js"></script>
     <!-- optional: cytoscpae download functions-->
@@ -41,6 +46,17 @@
 
 </head>
 <body>
+<!-- <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <form class="navbar-form">
+            <span class="navbar-text">text</span>
+            <div id='dpYearDiv' class="input-group"></div>
+            <button type="button" class="btn btn-default btn-xs" onclick="animation('dpYear')">
+                <span class="glyphicon glyphicon-play"></span>Animation
+            </button>
+        </form>
+    </div>
+</nav> -->
 <div id="cy"></div>
 <div id="property"></div>
 </body>

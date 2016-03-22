@@ -6,6 +6,7 @@ class Edge(object):
         self.Interaction = ''
         self.source = ''
         self.target = ''
+        # self.Weight = []
 
     @staticmethod
     def add(k):
@@ -29,4 +30,5 @@ class Edge(object):
         attr.append('Interaction: "%s"' % (self.Interaction))
         attr.append('source: "%s"' % (self.source))
         attr.append('target: "%s"' % (self.target))
+        # attr.append('Weight: %s' % (len(set(self.weight)))) # number field
         return """{data: { %s }}""" % (', '.join(attr))

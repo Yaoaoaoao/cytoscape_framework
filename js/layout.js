@@ -1,7 +1,16 @@
 var layoutObj =  {
-    name: 'cose',
+    name: 'arbor',
     padding: 5
 };
+
+// var layoutObj =  {
+//     name: 'springy',
+//     fit: true,
+//     maxSimulationTime: 4000,
+//     stiffness: 100,
+//     repulsion: 500,
+//     damping: 0.4
+// };
 
 //the concentric layout
 //var layoutObj = {

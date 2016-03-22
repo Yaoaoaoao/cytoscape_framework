@@ -1,2 +1,4 @@
 .idea/
 cytoscape-template.iml
+*.pyc
+js/library/*

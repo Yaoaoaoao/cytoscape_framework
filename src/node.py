@@ -7,6 +7,8 @@ class Node(object):
         self.id = id
         # optional fields
         # self.Label = ''
+        # self.Group = ''
+        # self.Size = []
 
     @staticmethod
     def add(id):
@@ -25,7 +27,8 @@ class Node(object):
         attr = []
         attr.append('id: "%s"' % (self.id ))
         # attr.append('Label: "%s"' % (self.Label))
-        # if attribute is a number field, remove double quote around the value
+        # attr.append('Group: "%s"' % (self.Group))
+        # attr.append('Size: %s' % (len(set(self.Size)))) # number field
         return """{data: { %s }}""" % (', '.join(attr))
 
 
