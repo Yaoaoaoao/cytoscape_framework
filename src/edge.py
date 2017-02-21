@@ -1,5 +1,3 @@
-from global_variable import *
-
 class Edge(object):
     def __init__(self):
         # list edge's attribute here
@@ -9,7 +7,7 @@ class Edge(object):
         # self.Weight = []
 
     @staticmethod
-    def add(k):
+    def add(k, EDGES):
         """
         methods independent to this class.
         :return: new edge or not

@@ -1,5 +1,3 @@
-from global_variable import *
-
 class Node(object):
     def __init__(self, id):
         # list node's attribute here
@@ -11,7 +9,7 @@ class Node(object):
         # self.Size = []
 
     @staticmethod
-    def add(id):
+    def add(id, NODES):
         """
         methods independent to this class.
         :return: new node or not
