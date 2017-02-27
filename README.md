@@ -25,22 +25,19 @@ Structure
     │
     ├── src: **Data cleaning and organizing**
     │   ├── __init__.py
-    │   ├── global_variable.py
-    │   ├── dump.py
     │   ├── edge.py: define edge in the network.
     │   ├── node.py: define node in the network.
     │   └── view.py: main program. 
     │
     ├── js: **Visualization module**
-    │   ├── library (Cytoscape.js library, v2.3.11 is included)
-    │   ├── font (Cytoscape.js library)
+    │   ├── library (?)
+    │   ├── font (font library?)
     │   ├── functions_cyto.js: initialize cytoscape, define mouse_hover and left_click action.
-    │   ├── layout.js: define Cytoscape layout. 
     │   ├── network.js: define Cytoscape network elements. 
     │   ├── style.js: define Cytoscape visual style.
     │   └── web_style.css: Webpage css style.
     │
-    └── view.php: Cytoscape view page.
+    └── view.html: Cytoscape view page.
 
 
 Reference
