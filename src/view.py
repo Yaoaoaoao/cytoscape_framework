@@ -1,46 +1,56 @@
 import csv
 import os
-import sys
 
 from node import *
 from edge import *
-from dump import *
+import json
 
-dataDirectory = '../data/'
+_DATA_DIR = '../data/'
+_JS_DIR = '../js/'
+_JS_OBJ = 'var eleObj = eval(%s);'
 
-def read_file(filename):
-    with open(os.path.join(os.path.dirname(__file__), dataDirectory, filename), "r") as csvfile:
+
+def file_path(dir, filename):
+    return os.path.join(os.path.dirname(__file__), dir, filename)
+
+
+def read_file(dir, filename):
+    with open(file_path(dir, filename), "r") as csvfile:
         return list(csv.reader(csvfile, delimiter='\t'))
 
-def print_network(NODES, EDGES):
-    # Debug.
-    print dump_network(NODES, EDGES)
 
-def write_file(NODES, EDGES):
-    # Write network to js/network.js for web display
-    networkDirectory = '../js/'
-    with open(os.path.join(os.path.dirname(__file__), networkDirectory, 'network.js'), "w") as jsfile:
-        jsfile.write('var eleObj = '+dump_network(NODES, EDGES)+';')
+def write_file(dir, filename, network):
+    # Write network js obj to js/network.js for web display
+    with open(file_path(dir, filename), "w") as js:
+        js.write(network)
 
 
+def dump_network(NODES, EDGES):
+    data = {
+        "nodes": [{"data": n.__dict__} for n in NODES.values()],
+        "edges": [{"data": e.__dict__} for e in EDGES.values()],
+    }
+    return json.dumps(data)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     NODES, EDGES = {}, {}
-    f = read_file('test.csv')
+    f = read_file(_DATA_DIR, 'test.csv')
 
     for l in f:
-        id = ''
+        id = l[0]
         if Node.add(id, NODES):
             # new node, add other attributes here
             # NODES[id].Label = ''
             pass
 
         # k = (sn, tn, i)
-        k = ('','','')
+        k = ('', '', '')
         if Edge.add(k, EDGES):
             # new edge, add other attributes here
             pass
 
-    print_network(NODES, EDGES)
-    # write_file(NODES, EDGES)
-
+    dump_network(NODES, EDGES)
+    
+    # network = _JS_OBJ % dump_network(NODES, EDGES)
+    # write_file(_JS_DIR, 'network.js', network)

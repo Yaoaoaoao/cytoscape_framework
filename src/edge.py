@@ -1,6 +1,5 @@
 class Edge(object):
     def __init__(self):
-        # list edge's attribute here
         self.Interaction = ''
         self.source = ''
         self.target = ''
@@ -21,12 +20,3 @@ class Edge(object):
             return True
         else:
             return False
-
-    def dump(self):
-        # describe how attribute is displayed
-        attr = []
-        attr.append('Interaction: "%s"' % (self.Interaction))
-        attr.append('source: "%s"' % (self.source))
-        attr.append('target: "%s"' % (self.target))
-        # attr.append('Weight: %s' % (len(set(self.weight)))) # number field
-        return """{data: { %s }}""" % (', '.join(attr))
