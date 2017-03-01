@@ -49,79 +49,37 @@ function mouse_hover() {
 function left_click() {
     //left click to show property table
     var cy = $("#cy").cytoscape("get");
-    cy.on('tap', function (e) {
-        if (e.cyTarget === cy) {
-            cy.$().unselect();
-            $("#property").hide();
+    cy.elements().qtip({
+        content: {
+            text: function () {
+                return property_table(this.data());
+            }
+        },
+        position: {
+            my: 'top center',
+            at: 'bottom center'
+        },
+        style: {
+            classes: 'qtip-bootstrap',
+            tip: {
+                width: 16,
+                height: 8
+            }
         }
-    });
-    cy.$('node').on('tap', function (e) {
-        e.cyTarget.select();
-        // if (e.cyTarget.data().Group == "faculty")
-        property_table_node(e.cyTarget);
-    });
-    cy.$('edge').on('tap', function (e) {
-        e.cyTarget.select();
-        property_table_edge(e.cyTarget);
     });
 }
 
-function property_table_node(ele) {
-    $('#property').empty();
-    $('#property').show();
-    $('#property').append('<table id="propertyTable"></table>');
-    var data = ele.data();
-    $('#propertyTable').append('<tr><td colspan="2" class="property-header">' + data.id + '</td></tr>');
+function property_table(data) {
+    var table = '<table id="propertyTable" class="table table-striped">';
+    table += '<tr><td colspan="2" class="property-header">' + data.id + '</td></tr>';
     for (var i in data)
-        $('#propertyTable').append('<tr><td class="property-table-td1">' + i + '</td><td class="property-table-td2">' + data[i], '</td></tr>');
+        table += '<tr><td class="property-table-td1">' + i + '</td><td class="property-table-td2">' + data[i], '</td></tr>';
     // or
     //var outList = ["Label"];
     //for (var i in outList)
-    //    $('#propertyTable').append('<tr><td class="property-table-td1">' + outList[i] + '</td><td class="property-table-td2">' + data[outList[i]] + '</td></tr>');
-    set_div_pos(ele.renderedPosition().x, ele.renderedPosition().y, "#property", 150, true);
-    $("#propertyTable tr:odd").css({
-        "background-color": "#f4f4f4",
-        "color": "#000"
-    });
-}
-
-function property_table_edge(ele) {
-    $('#property').empty();
-    $('#property').show();
-    $('#property').append('<table id="propertyTable"></table>');
-    var data = ele.data();
-    $('#propertyTable').append('<tr><td colspan="2" class="property-header"> Edge: </td></tr>');
-    for (var i in data)
-        $('#propertyTable').append('<tr><td class="property-table-td1">' + i + '</td><td class="property-table-td2">' + data[i], '</td></tr>');
-    var eles = ele.connectedNodes();
-    if (eles.length > 1) {
-        var x = eles[0].renderedPosition().x + eles[1].renderedPosition().x;
-        var y = eles[0].renderedPosition().y + eles[1].renderedPosition().y;
-        set_div_pos(x / 2, y / 2, "#property", 150, true);
-    }
-    else
-        set_div_pos(eles.renderedPosition().x, eles.renderedPosition().y, "#property", 150, true);
-    $("#propertyTable tr:odd").css({
-        "background-color": "#f4f4f4",
-        "color": "#000"
-    });
-}
-
-function set_div_pos(x, y, divid, w, shift) {
-    if (shift == true)
-        var xs = 15, ys = 15;
-    else
-        var xs = 0, ys = 0;
-    if (x + w > windowWidth)
-        x = x - w - xs;
-    else
-        x = x + xs;
-    var h = $(divid).height();
-    if (y + h > windowHeight)
-        y = y - h - ys;
-    else
-        y = y + ys;
-    $(divid).offset({top: y, left: x});
+    //    table += '<tr><td class="property-table-td1">' + outList[i] + '</td><td class="property-table-td2">' + data[outList[i]] + '</td></tr>';
+    table += '</table>';
+    return table;
 }
 
 //function save_options() {
